@@ -1,7 +1,12 @@
 $ExcelData = Get-Clipboard  
 $ColNum = ($ExcelData[0] | Measure-Object -Word).Words
 
-$MarkdownData = (Write-Output $ExcelData | ForEach-Object{$_ -replace "`t", "|" -replace "^", "|"  -replace "$", "|"})
+$MarkdownData = (Write-Output $ExcelData | ForEach-Object {$_ `
+    -replace "`t", "|" `
+    -replace "^", "|"  `
+    -replace "$", "|" `
+    -replace "`n", "<br>" `
+})
 
 $align ="|"
 for ($i=0; $i -lt ([int]$ColNum); $i++){
