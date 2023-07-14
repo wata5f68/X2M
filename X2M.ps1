@@ -13,6 +13,9 @@ for ($i=0; $i -lt ([int]$ColNum); $i++){
     $align +="---|"     
 }
 
+# insert alignment into line 2 
 $MarkdownData[1] =  $align + "`n" + $MarkdownData[1]
+
+# delete vertical bar in end
 $MarkdownData = $MarkdownData[0..($MarkdownData.Length - 2)]
 Set-Clipboard $MarkdownData
