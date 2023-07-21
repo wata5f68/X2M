@@ -15,13 +15,21 @@ for ($i=0; $i -lt ($MarkdownData[0]).Length; $i++ ){
 }
 $ColNum--
 
-$align ="|"
+
+$AlignConf = Read-Host "Set align Left:L, Center:C, Right:R"
+switch ($AlignConf) {
+    "L" { $AlignVar = ":---|" }
+    "C" { $AlignVar = ":---:|" }
+    "R" { $AlignVar = "---:|" }
+    Default {$AlignVar = "---|"}
+}
+$Align ="|"
 for ($i=0; $i -lt ([int]$ColNum); $i++){
-    $align +="---|"     
+    $Align +=$AlignVar     
 }
 
 # insert alignment into line 2 
-$MarkdownData[1] =  $align + "`n" + $MarkdownData[1]
+$MarkdownData[1] =  $Align + "`n" + $MarkdownData[1]
 
 # delete vertical bar in end
 $MarkdownData = $MarkdownData[0..($MarkdownData.Length - 2)]
